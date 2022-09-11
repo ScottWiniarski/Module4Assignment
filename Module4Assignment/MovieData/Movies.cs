@@ -8,8 +8,15 @@ using System.Threading.Tasks;
 
 namespace Module4Assignment.MovieData
 {
-    internal class Movies
+    internal class Movies : IMovies
     {
+        private readonly ILogger<Movies> _logger;   
+
+        public Movies(ILogger<Movies> logger)
+        {
+            _logger = logger;
+        }   
+
         public static void MovieData (string input)
         {
             string file = $"{Environment.CurrentDirectory}/data/movies.csv";
@@ -54,7 +61,7 @@ namespace Module4Assignment.MovieData
             {
                 logger.Error(ex.Message);    
             }
-            Logger.Info("Movies in file {Count}", MovieIds.Count);
+            logger.Info("Movies in file {Count}", MovieIds.Count);
 
 
 
